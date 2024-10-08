@@ -1,0 +1,22 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "src/index.ts",
+        "use": "@vercel/node",
+        "config": {
+          "distDir": "dist"
+        }
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "/dist/index.js"
+      }
+    ],
+    "buildCommand": "tsc -b",
+    "outputDirectory": "dist",
+    "startCommand": "node dist/index.js"
+  }
+  
