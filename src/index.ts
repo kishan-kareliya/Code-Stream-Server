@@ -8,14 +8,24 @@ dotenv.config();
 
 const app = express();
 const httpServer = http.createServer(app);
+
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL,
+    methods: ["GET", "POST"],
+    credentials: true,
+  })
+);
+
+app.use(express.json());
+
 const io = new Server(httpServer, {
   cors: {
     origin: process.env.FRONTEND_URL,
+    methods: ["GET", "POST"],
+    credentials: true,
   },
 });
-
-app.use(express.json());
-app.use(cors());
 
 interface User {
   name: string;
